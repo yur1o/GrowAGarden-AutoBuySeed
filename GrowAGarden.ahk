@@ -1,4 +1,4 @@
-﻿F1:: {
+F1:: {
     loop {
     if WinExist("ahk_exe RobloxPlayerBeta.exe") {
         WinActivate("ahk_exe RobloxPlayerBeta.exe")
@@ -33,81 +33,7 @@ F3:: {
 F4::{
 
     loop {
-    MouseGetPos &x, &y
 
-    ; Move mouse to seed button
-    targetX := 245
-    targetY := 85
-    while (x != targetX || y != targetY) {
-        if (x < targetX)
-            x++
-        else if (x > targetX)
-            x--
-
-        if (y < targetY)
-            y++
-        else if (y > targetY)
-            y--
-
-        MouseMove x, y, 0
-    }
-
-    Sleep 1000
-
-    MouseClick 'Left'
-    Sleep 1000
-
-    Sleep 1000
-    Send('e')
-    Sleep 1000
-
-    ;First crop
-    targetX := 290
-    targetY := 260
-
-    while (x != targetX || y != targetY) {
-        if (x < targetX) 
-            x++
-        else if (x > targetX)
-            x--
-
-        if (y < targetY) 
-            y++
-        else if (y > targetY)
-            y--
-
-        MouseMove x, y, 0
-
-    }
-
-    Sleep 2000
-    MouseClick 'WheelUp',,, 20
-    Sleep 1000
-    MouseClick 'Left'
-    Sleep 1000
-
-    ;Buy First Crop
-    targetX := 290
-    targetY := 360
-    while (x != targetX || y != targetY) {
-        if (x < targetX) 
-            x++
-        else if (x > targetX)
-            x--
-
-        if (y < targetY) 
-            y++
-        else if (y > targetY)
-            y--
-
-        MouseMove x, y, 0
-
-    }
-
-    Sleep 1000
-    MouseClick 'Left',,, 5
-    Sleep 1000
-    
     moveTo(targetX, targetY) {
         MouseGetPos &x, &y
         while (x != targetX || y != targetY) {
@@ -115,15 +41,37 @@ F4::{
                 x++
             else if (x > targetX)
                 x--
-    
+        
             if (y < targetY)
                 y++
             else if (y > targetY)
                 y--
-    
+        
             MouseMove x, y, 0
-        }
-    }
+            }
+        }    
+
+    ;Seed Button
+    moveTo(245,85)
+    Sleep 1000
+    MouseClick 'Left'
+    Sleep 1000
+    Send('e')
+    Sleep 1000
+        
+    ;First Crop
+    moveTo(290,260)
+    Sleep 2000
+    MouseClick 'WheelUp',,, 20
+    Sleep 1000
+    MouseClick 'Left'
+    Sleep 1000
+
+    moveTo(290,360)
+    Sleep 1000
+    MouseClick 'Left',,, 5
+    Sleep 1000
+    
     
     Loop 17 {
         ;Move to Crop
@@ -138,7 +86,7 @@ F4::{
         Sleep 1000
         MouseClick 'Left',,, 5
         Sleep 1000
-    }
+        } 
 
     }
 
