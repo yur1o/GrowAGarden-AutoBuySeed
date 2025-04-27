@@ -9,7 +9,7 @@ A simple AHK script to automatically buy crop seeds in Roblox’s **Grow A Garde
 
 | Hotkey | Action                         |
 |:--------|:--------------------------------|
-| `F1`     | Minimize Roblox and fix its position |
+| `F1`     | Fix/Minimize Roblox             |
 | `F2`     | Open Roblox                     |
 | `F3`     | Close the script                |
 | `F4`     | Start auto-buying seeds         |
