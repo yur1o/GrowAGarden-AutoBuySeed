@@ -3,7 +3,6 @@ myGui.SetFont("s10", "Roboto")
 myGui.BackColor := "000000"
 ;F1 Button
 f1Button := myGui.Add("Button", "xm ym w80 h30", "F1")
-f1Button.BackgroundColor := "000000"
 myGui.Add("Text", "xm+85 ym+6 cFFFFFF", "Fix/Minimize Roblox")
 
 ;F2 Button
