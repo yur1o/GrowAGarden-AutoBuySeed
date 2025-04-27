@@ -1,4 +1,43 @@
-F1:: {
+myGui := Gui()
+myGui.SetFont("s10", "Roboto")
+myGui.BackColor := "000000"
+;F1 Button
+f1Button := myGui.Add("Button", "xm ym w80 h30", "F1")
+f1Button.BackgroundColor := "000000"
+myGui.Add("Text", "xm+85 ym+6 cFFFFFF", "Fix/Minimize Roblox")
+
+;F2 Button
+f2Button := myGui.Add("Button", "xm ym+40 w80 h30", "F2")
+myGui.Add("Text", "xm+85 ym+46 cFFFFFF", "Open Roblox")
+
+;F3 Button
+f3Button := myGui.Add("Button", "xm ym+80 w80 h30", "F3")
+myGui.Add("Text", "xm+85 ym+86 cFFFFFF", "Close Script")
+
+;F4 Button
+f4Button := myGui.Add("Button", "xm ym+120 w80 h30", "F4")
+myGui.Add("Text", "xm+85 ym+126 cFFFFFF", "Start Auto Buy")
+
+;Private Server Link
+myGui.Add("Text", "xm ym+180 cFFFFFF", "Enter Private Server:")
+urlInput := myGui.Add("Edit", "xm+125 ym+175 w200", "")
+
+;Hotkeys
+F1::fixMinimizeRoblox()
+F2::openRoblox()
+F3::closeScript()
+F4::startAutoBuy()
+
+;GuiEvents
+f1Button.OnEvent("Click", fixMinimizeRoblox)
+f2Button.OnEvent("Click", openRoblox)
+f3Button.OnEvent("Click", closeScript)
+f4Button.OnEvent("Click", startAutoBuy)
+myGui.OnEvent("Close", closeScript)
+
+myGui.Show("w390 h220")
+
+fixMinimizeRoblox(*) {
     loop {
     if WinExist("ahk_exe RobloxPlayerBeta.exe") {
         WinActivate("ahk_exe RobloxPlayerBeta.exe")
@@ -14,27 +53,36 @@ F1:: {
  }
 }
 
-F2:: {
-    Run("https://www.roblox.com/share?code=aefc63066e045548928b6812223bb9ef&type=Server")
-    loop {
-    if WinExist("ahk_exe RobloxPlayerBeta.exe"){
-        Send('^w')
-        break
+openRoblox(*) {
+    link := urlInput.Value
+    if (link = "") {
+        MsgBox("Please enter your private server link.",, "T2")
     }
- }
+    else {
+        MsgBox("Opening Roblox",, "T3")
+        Run(link)
+        Sleep 5000
+        Send('^w')
+    }
 }
 
-F3:: {
+closeScript(*) {
     MsgBox("Closing Script",, "T1")
     Sleep 500
     ExitApp
 }
 
-F4::{
+startAutoBuy(*) {
+
+    if (!WinExist("ahk_exe" "RobloxPlayerBeta.exe")) {
+        MsgBox("Open Roblox to start auto buy",, "T3")
+    }
+    else If (WinExist("ahk_exe" "RobloxPlayerBeta.exe")) {
+        MsgBox("Starting Auto buy",, "T1")
+        Sleep 1500
 
     loop {
-
-    moveTo(targetX, targetY) {
+        moveTo(targetX, targetY) {
         MouseGetPos &x, &y
         while (x != targetX || y != targetY) {
             if (x < targetX)
@@ -72,7 +120,6 @@ F4::{
     MouseClick 'Left',,, 5
     Sleep 1000
     
-    
     Loop 17 {
         ;Move to Crop
         moveTo(300, 500)
@@ -86,8 +133,9 @@ F4::{
         Sleep 1000
         MouseClick 'Left',,, 5
         Sleep 1000
-        } 
+            } 
+
+        }
 
     }
-
 }
