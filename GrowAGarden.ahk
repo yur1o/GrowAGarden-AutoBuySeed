@@ -36,14 +36,27 @@ myGui.OnEvent("Close", closeScript)
 
 myGui.Show("w390 h220")
 
+;Logs
+logFile := FileOpen("Log.txt", "a")
+
+logMessage(message) {
+    global logFile
+    timestamp := Format("{:T}", A_Now)
+    logFile.WriteLine("[" timestamp "] " message)
+    logFile.Close()
+    logFile := FileOpen("Log.txt", "a")
+}
+
 fixMinimizeRoblox(*) {
+    logMessage("Attempting to fix/minimize roblox.")
     loop {
     if WinExist("ahk_exe RobloxPlayerBeta.exe") {
         WinActivate("ahk_exe RobloxPlayerBeta.exe")
         WinRestore("ahk_exe RobloxPlayerBeta.exe")
         WinMove 0, 0
+        logMessage("Minimzed")
     } else {
-        MsgBox("Press F2 To Open Roblox",, "T5")
+        logMessage("Press F2 To Open Roblox")
     }
     Sleep 1000
     if WinExist("ahk_exe RobloxPlayerBeta.exe") {
@@ -55,29 +68,36 @@ fixMinimizeRoblox(*) {
 openRoblox(*) {
     link := urlInput.Value
     if (link = "") {
-        MsgBox("Please enter your private server link.",, "T2")
+        logMessage("Please enter your private server link.")
     }
     else {
-        MsgBox("Opening Roblox",, "T3")
+        logMessage("Opening Roblox")
         Run(link)
-        Sleep 5000
-        Send('^w')
+    }
+    
+    loop {
+    if (WinExist("ahk_exe RobloxPlayerBeta.exe")) {
+        Send("^w") 
+        break
+    }
     }
 }
 
 closeScript(*) {
-    MsgBox("Closing Script",, "T1")
+    logMessage("Closing Script")
     Sleep 500
     ExitApp
 }
 
 startAutoBuy(*) {
+    logMessage("Attempting Auto buy")
+    sleep 500
 
     if (!WinExist("ahk_exe" "RobloxPlayerBeta.exe")) {
-        MsgBox("Open Roblox to start auto buy",, "T3")
+        logMessage("Open Roblox to start auto buy")
     }
     else If (WinExist("ahk_exe" "RobloxPlayerBeta.exe")) {
-        MsgBox("Starting Auto buy",, "T1")
+        logMessage("Starting Auto buy")
         Sleep 1500
 
     loop {
