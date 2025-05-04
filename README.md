@@ -3,7 +3,7 @@ A simple AHK script to automatically buy crop seeds in Roblox’s **Grow A Garde
 
 ## 📖 How to Use
 
-1. **Install [AutoHotkey](https://www.autohotkey.com/)** if you haven't already.
+1. **Install [AutoHotkey](https://www.autohotkey.com/)V2** if you haven't already.
 2. Run the `GrowAGarden-AutoBuySeed.ahk` script.
 3. Use the following hotkeys to control the script:
 
