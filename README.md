@@ -1,5 +1,5 @@
 # 🌱 GrowAGarden-AutoBuySeed
-A simple AHK script to automatically buy crop seeds in Roblox’s **Grow A Garden** game.
+A simple AHK script to automatically buy crop seeds in Roblox’s **Grow A Garden**
 
 ## 📖 How to Use
 
